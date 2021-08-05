@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model game_urls {
+  id         Int  @id @default(autoincrement())
+  type       String?
+  name       String?
+  url        String?
+  appid      String?
+  is_crawled String?
+  page       Int
+}
