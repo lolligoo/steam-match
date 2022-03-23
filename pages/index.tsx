@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Layout from '../components/Layout'
-import Router from 'next/router'
+//import Router from 'next/router'
 
 const Draft: React.FC = () => {
   const [content, setContent] = useState('')
@@ -11,7 +11,7 @@ const Draft: React.FC = () => {
     e.preventDefault()
     try {
       const body = content.split('\n')
-      const res = await fetch(`http://localhost:3000/api/feed`, {
+      const res = await fetch(`https://steam-match-hulx93nxs-lolligoo.vercel.app/api/feed`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/text' },
         body: JSON.stringify(body),
