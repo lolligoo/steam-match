@@ -3,16 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
-model game_urls {
-  id         Int  @id @default(autoincrement())
-  type       String?
-  name       String?
-  url        String?
-  appid      String?
-  is_crawled String?
-  page       Int
+model gameinfo {
+  id    Int     @id @default(autoincrement())
+  title String?
+  url   String?
 }
