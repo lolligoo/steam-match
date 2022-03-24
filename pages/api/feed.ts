@@ -4,7 +4,10 @@ import prisma from '../../lib/prisma'
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const posts = await prisma.gameinfo.findMany({
-    where: {title: {in: JSON.parse(req.body)}},
+    where: {title: {
+      in: JSON.parse(req.body),
+      mode: 'insensitive'
+    }},
   })
   res.json(posts)
 }
