@@ -23,9 +23,9 @@ const Draft: React.FC = () => {
     }
   }
   const getdate = (date:[{title:string,url:string}]) => {
-    let out = content
+    let out = content + '\n'
     date.map((item) => {
-      out = out.replace(item.title,'[url='+item.url+']'+item.title+'[/url]')
+      out = out.replace(item.title+'\n','[url='+item.url+']'+item.title+'[/url]\n')
     })
     setResult(out)
   }
@@ -51,6 +51,7 @@ const Draft: React.FC = () => {
           cols={50}
           placeholder="Result"
           rows={10}
+          readOnly
           value={result}
           />
         </form>

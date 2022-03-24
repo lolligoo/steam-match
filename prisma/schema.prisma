@@ -3,12 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model gameinfo {
   id    Int     @id @default(autoincrement())
   title String?
-  url   String?
+  url   String? @unique
 }
