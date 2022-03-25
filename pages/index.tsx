@@ -11,7 +11,7 @@ const Draft: React.FC = () => {
     e.preventDefault()
     try {
       const body = content.split('\n')
-      const res = await fetch(`http://localhost:3000/api/feed`, {
+      const res = await fetch(`https://steam-match.vercel.app/api/feed`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/text' },
         body: JSON.stringify(body),
