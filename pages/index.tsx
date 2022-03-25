@@ -11,7 +11,7 @@ const Draft: React.FC = () => {
     e.preventDefault()
     try {
       const body = content.split('\n')
-      const res = await fetch(`https://steam-match.vercel.app/api/feed`, {
+      const res = await fetch(`http://localhost:3000/api/feed`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/text' },
         body: JSON.stringify(body),
@@ -22,10 +22,17 @@ const Draft: React.FC = () => {
       console.error(error)
     }
   }
-  const getdate = (date:[{title:string,url:string}]) => {
-    let out = content + '\n'
+  const getdate = (date:[{title:string,url:string,match:string}]) => {
+    let input = content.split('\n')
+    let out = ""
+    const regx = /[！？｡＂＃＄％＆＇（）＊＋－／：；＜＝＞＠［＼］＾＿｀｛｜｝～｟｠｢｣､、〃》「」『』【】〔〕〖〗〘〙〚〛〜〝〞〟〰〾〿–—‘'‛“”„‟…‧﹏®™\!\"#$%&\'()+,-.\/:;<=>\?@\[\\\]^_`\{\|\}~\s]+/g
+    input.map((item,index) => {
+      input[index] = item.replace(regx, '').toLowerCase()
+    })
+    out = input.join('\n') + '\n'
+    console.log(out)
     date.map((item) => {
-      out = out.replace(item.title+'\n','[url='+item.url+']'+item.title+'[/url]\n')
+      out = out.replace(item.match+'\n', '[url='+item.url+']'+item.title+'[/url]\n')
     })
     setResult(out)
   }
